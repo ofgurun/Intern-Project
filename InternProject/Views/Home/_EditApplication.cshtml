@@ -1,0 +1,74 @@
+﻿@model InternProject.Models.ApplicationForm
+
+<div class="modal-header">
+    <h5 class="modal-title">Başvuruyu Güncelle</h5>
+</div>
+<div class="modal-body">
+    <form id="editForm">
+        <input type="hidden" id="editId" value="@Model.Id" />
+
+        <div class="mb-3">
+            <label>Proje Adı</label>
+            <input type="text" class="form-control" id="editProjectName" value="@Model.projectName" />
+        </div>
+
+        <div class="mb-3">
+            <label>Başvuran Birim</label>
+            <select class="form-select" id="editApplicantUnit"></select>
+        </div>
+
+        <div class="mb-3">
+            <label>Başvuru Yapılan Proje</label>
+            <select class="form-select" id="editAppliedProject"></select>
+        </div>
+
+        <div class="mb-3">
+            <label>Başvuru Yapılan Tür</label>
+            <select class="form-select" id="editAppliedType"></select>
+        </div>
+
+        <div class="mb-3">
+            <label>Katılımcı Türü</label>
+            <select class="form-select" id="editParticipantType"></select>
+        </div>
+
+        <div class="mb-3">
+            <label>Başvuru Dönemi</label>
+            <select class="form-select" id="editApplicationPeriod"></select>
+        </div>
+
+        <div class="mb-3">
+            <label>Başvuru Tarihi</label>
+            <input type="date" class="form-control" id="editApplicationDate" value="@(Model.applicationDate?.ToString("yyyy-MM-dd"))" />
+        </div>
+
+        <div class="mb-3">
+            <label>Başvuru Durumu</label>
+            <select class="form-select" id="editApplicationState"></select>
+        </div>
+
+        <div class="mb-3">
+            <label>Durum Tarihi</label>
+            <input type="date" class="form-control" id="editStateDate" value="@(Model.stateDate?.ToString("yyyy-MM-dd"))" />
+        </div>
+
+        <div class="mb-3">
+            <label>Hibe Tutarı</label>
+            <input type="text" class="form-control" id="editGrantAmount" value="@Model.grantAmount" />
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" onclick="updateApplication()">Güncelle</button>
+</div>
+
+<script>
+    $(document).ready(function () {
+        loadDropdown('Başvuran Birim', '#editApplicantUnit', @(Model.applicantUnit > 0 ? Model.applicantUnit : 0));
+        loadDropdown('Başvuru Yapılan Proje', '#editAppliedProject', @(Model.appliedProject > 0 ? Model.appliedProject : 0));
+        loadDropdown('Başvuru Yapılan Tür', '#editAppliedType', @(Model.appliedType > 0 ? Model.appliedType : 0));
+        loadDropdown('Katılımcı Türü', '#editParticipantType', @(Model.participantType > 0 ? Model.participantType : 0));
+        loadDropdown('Başvuru Dönemi', '#editApplicationPeriod', @(Model.applicationPeriod > 0 ? Model.applicationPeriod : 0));
+        loadDropdown('Başvuru Durumu', '#editApplicationState', @(Model.applicationState > 0 ? Model.applicationState : 0));
+    });
+</script>

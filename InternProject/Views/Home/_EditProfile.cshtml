@@ -1,0 +1,25 @@
+﻿@model InternProject.Models.User
+
+<div class="modal-header">
+    <h5 class="modal-title">Profilinizi Güncelleyin</h5>
+</div>
+<div class="modal-body">
+    <form id="profileForm">
+        <input type="hidden" id="userId" value="@Model.Id" />
+        <div class="mb-3">
+            <label>Kullanıcı Adı</label>
+            <input type="text" id="username" class="form-control" value="@Model.Username" readonly />
+        </div>
+        <div class="mb-3">
+            <label>E-Posta</label>
+            <input type="text" id="email" class="form-control" value="@Model.Email" />
+        </div>
+        <div class="mb-3">
+            <label>Yeni Şifre</label>
+            <input type="password" id="password" class="form-control" />
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" onclick="updateProfile()">Kaydet</button>
+</div>

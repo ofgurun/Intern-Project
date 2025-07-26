@@ -1,0 +1,71 @@
+﻿<div class="row">
+    <div class="col-lg-8 mb-4 order-0">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title h3 text-center mb-3">Yeni Tip Ekle</h3>
+
+                <div class="row mb-3">
+                    <div class="col col-12">
+                        <label for="typeSelectAdd" class="form-label">Başlık</label>
+                        <select class="form-select" id="typeSelectAdd">
+                            <option value="">Seçiniz</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col col-12">
+                        <label for="subtypeInput" class="form-label">Yeni Değer</label>
+                        <input type="text" id="subtypeInput" class="form-control" placeholder="Yeni değer girin" />
+                    </div>
+                </div>
+
+                <div class="row mb-3 justify-content-center">
+                    <div class="col col-2">
+                        <button type="button" class="btn btn-primary" onclick="addNewTip()">Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 mb-4 order-0">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title h3 text-center mb-3">Tip Sil</h3>
+
+                <div class="row mb-3">
+                    <div class="col col-12">
+                        <label for="typeSelectDelete" class="form-label">Başlık</label>
+                        <select class="form-select" id="typeSelectDelete">
+                            <option value="">Seçiniz</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col col-12">
+                        <label for="existingSubtypeSelect" class="form-label">Mevcut Değerler</label>
+                        <select class="form-select" id="existingSubtypeSelect">
+                            <option value="">Önce başlık seçin</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3 justify-content-center">
+                    <div class="col col-2">
+                        <button type="button" class="btn btn-danger" onclick="deleteSelectedTip()">Sil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script src="~/js/application-functions.js"></script>
+

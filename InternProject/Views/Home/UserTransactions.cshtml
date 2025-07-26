@@ -1,0 +1,153 @@
+﻿@model List<InternProject.Models.User>
+
+@{
+    ViewData["Title"] = "Kullanıcı İşlemleri";
+    var currentUsername = Context.Session.GetString("Username");
+}
+
+<div class="card mb-4">
+    <h5 class="card-header">Kullanıcı İşlemleri</h5>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div class="d-flex justify-content-end mb-3">
+                <button onclick="openProfileModal()" class="btn btn-sm btn-info">
+                    Profilimi Güncelle
+                </button>
+            </div>
+            <div class="d-flex justify-content-end mb-3">
+                <button onclick="openAddUserModal()" class="btn btn-sm btn-success">
+                    <i class="bx bx-plus"></i> Kullanıcı Ekle
+                </button>
+             </div>
+
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Kullanıcı Adı</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        if (user.Username != currentUsername)
+                        {
+                            <tr>
+                                <td>@user.Username</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning"
+                                            onclick="editUser(@user.Id)">
+                                        <i class="bx bx-edit"></i> Güncelle
+                                    </button>
+
+                                    <button class="btn btn-sm btn-danger"
+                                            onclick="confirmDelete(@user.Id, '@user.Username')">
+                                        <i class="bx bx-trash"></i> Sil
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modalContent">
+            <!-- _EditProfile.cshtml buraya yüklenecek -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modalContent">
+            <!-- Buraya yükleniyor -->
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        function confirmDelete(userId, username) {
+            if (confirm(username + " kullanıcısını silmek istediğinize emin misiniz?")) {
+                $.ajax({
+                    url: '@Url.Action("DeleteUser", "Home")',
+                    type: 'POST',
+                    data: { userId: userId },
+                    success: function (response) {
+                        if (response.success) {
+                            alert("Kullanıcı silindi.");
+                            location.reload();
+                        } else {
+                            alert(response.message || "Silme işlemi başarısız.");
+                        }
+                    },
+                    error: function () {
+                        alert("Sunucu hatası.");
+                    }
+                });
+            }
+        }
+
+        function editUser(userId) {
+            $.get('/Home/EditProfile', { id: userId }, function (html) {
+                $('#modalContent').html(html);
+                $('#editModal').modal('show');
+            });
+        }
+
+        function openProfileModal() {
+            $.get('/Home/EditProfile', function (html) {
+                $('#modalContent').html(html);
+                $('#editModal').modal('show');
+            });
+        }
+
+        function updateProfile() {
+            const id = $('#userId').val();
+            const email = $('#email').val();
+            const password = $('#password').val();
+
+            $.post('/Home/UpdateProfile', { id, email, password }, function (res) {
+                if (res.success) {
+                    alert("Profil güncellendi.");
+                    $('#editModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert("Hata!");
+                }
+            });
+        }
+
+
+
+                function openAddUserModal() {
+            $.get('/Home/AddUser', function (html) {
+                $('#modalContent').html(html);
+                $('#editModal').modal('show');
+            });
+        }
+
+        function saveUser() {
+            const data = $('#addUserForm').serialize();
+
+            $.post('/Home/AddUser', data, function (res) {
+                if (res.success) {
+                    alert("Kullanıcı eklendi.");
+                    $('#editModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert(res.message);
+                }
+            });
+        }
+
+    </script>
+
+}

@@ -1,0 +1,26 @@
+﻿@model InternProject.Models.User
+
+<div class="modal-header">
+    <h5 class="modal-title">Yeni Kullanıcı Ekle</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form id="addUserForm">
+        <div class="mb-3">
+            <label>Kullanıcı Adı</label>
+            <input type="text" name="Username" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label>E-posta</label>
+            <input type="email" name="Email" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label>Şifre</label>
+            <input type="password" name="Password" class="form-control" required />
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+    <button type="button" class="btn btn-primary" onclick="saveUser()">Kaydet</button>
+</div>

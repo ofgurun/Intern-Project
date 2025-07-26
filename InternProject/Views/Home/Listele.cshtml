@@ -1,0 +1,151 @@
+﻿@* <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+ *@
+<div class="card mb-4">
+	<h5 class="card-header">Filtre</h5>
+	<div class="card-body">
+		<form method="get" id="filterForm">
+			<div class="row mb-3">
+				<div class="col-md-4">
+					<label>Proje Adı</label>
+					<input type="text" class="form-control" name="projectName" />
+				</div>
+				<div class="col-md-4">
+					<label>Başvuran Birim</label>
+					<select class="form-control" name="applicantUnit" id="applicantUnit"></select>
+
+				</div>
+				<div class="col-md-4">
+					<label>Başvuru Yapılan Proje</label>
+					<select class="form-control" name="appliedProject" id="appliedProject"></select>
+						
+						<!-- proje seçenekleri -->
+					</select>
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-md-4">
+					<label>Başvuru Yapılan Tür</label>
+					<select class="form-control" name="appliedType" id="appliedType"></select>
+						
+						<!-- tür seçenekleri -->
+					</select>
+				</div>
+				<div class="col-md-4">
+					<label>Katılımcı Türü</label>
+					<select class="form-control" name="participantType" id="participantType"></select>
+						
+						<!-- katılımcı seçenekleri -->
+					</select>
+				</div>
+				<div class="col-md-4">
+					<label>Başvuru Dönemi</label>
+					<select class="form-control" name="applicationPeriod" id="applicationPeriod"></select>
+						
+						<!-- dönem seçenekleri -->
+					</select>
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-md-4">
+					<label>Başvuru Tarihi</label>
+					<input type="date" class="form-control" name="applicationDate" />
+				</div>
+				<div class="col-md-4">
+					<label>Durum Tarihi</label>
+					<input type="date" class="form-control" name="stateDate" />
+				</div>
+				<div class="col-md-4">
+					<label>Hibe Tutarı</label>
+					<input type="number" class="form-control" name="grantAmount" />
+				</div>
+			</div>
+			
+			
+
+			<div>
+				<button type="button" class="btn btn-primary" onclick="applyFilter()">Filtrele</button>
+				<button type="button" class="btn btn-secondary" onclick="clearFilter()">Temizle</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="card">
+	<h5 class="card-header">Başvurular</h5>
+	<div class="px-3 pt-3">
+		<button class="btn btn-primary" onclick="getApplicationsPaged(1)">Verileri Sırala</button>
+
+	 </div>
+	 <div class="px-3 pt-3">
+		<a href="javascript:void(0)" onclick="exportToExcel()" class="btn btn-outline-success mb-3">
+			Excel'e Aktar
+		</a>
+	</div>
+
+	<div class="table-responsive text-nowrap">
+		<table class="table">
+			<thead>
+				<tr>
+			<thead>
+				<tr>
+					<th>Proje Adı</th>
+					<th>Başvurulan Birim</th>
+					<th>Başvuru Yapılan Proje</th>
+					<th>Başvuru Yapılan Tür</th>
+					<th>Katılımcı Türü</th>
+					<th>Başvuru Dönemi</th>
+					<th>Başvuru Tarihi</th>
+					<th>Başvuru Durumu</th>
+					<th>Durum Tarihi</th>
+					<th>Hibe Tutarı</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+				</tr>
+			</thead>
+			<tbody class="table-border-bottom-0">
+				<!-- AJAX ile doldurulacak -->
+			</tbody>
+			
+		</table>
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<small class="text-light fw-semibold"></small>
+					<div class="demo-inline-spacing pagination justify-content-center">
+						<!-- Basic Pagination -->
+						<nav aria-label="Page navigation">
+							<ul class="pagination">
+								
+							</ul>
+						</nav>
+						<!--/ Basic Pagination -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content" id="modalContent">
+			<!-- PartialView içeriği AJAX ile buraya gelecek -->
+		</div>
+	</div>
+</div>
+
+
+
+@section Scripts {
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	@* <script src="~/js/application-functions.js"></script> *@
+
+	
+}
+
+

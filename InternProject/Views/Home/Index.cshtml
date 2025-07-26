@@ -1,0 +1,104 @@
+﻿@Model AplicationForm
+<div class="row">
+	<div class="col-lg-8 mb-4 order-0">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title h3 text-center mb-3">Başvuru Formu</h3>
+				<form asp-action="FormSave" method="post">
+@* 					@Html.AntiForgeryToken()<!--Bu kkısımlar chat gpt-->
+ *@					<div class="row mb-3">
+						<div class="col col-12">
+							<label for="projectName" class="form-label">PROJE ADI</label>
+							<input type="text"
+								   class="form-control"
+								   id="projectName"
+								   name="projectName"
+								   aria-describedby="defaultFormControlHelp" />
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col col-12">
+							<label for="applicantUnit" class="form-label">BAŞVURAN BİRİM</label>
+							<select class="form-select" id="applicantUnit" name="applicantUnit" aria-label="Default select example">
+								
+							</select>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col col-12">
+							<label for="appliedProject" class="form-label">BAŞVURU YAPILAN PROJE</label>
+							<select class="form-select" id="appliedProject" name="appliedProject" aria-label="Default select example">
+								
+							</select>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col col-12">
+							<label for="appliedType" class="form-label">BAŞVURU YAPILAN TÜR</label>
+							<select class="form-select" id="appliedType" name="appliedType" aria-label="Default select example">
+								
+							</select>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col col-12">
+							<label for="participantType" class="form-label">KATILIMCI TÜRÜ</label>
+							<select class="form-select" id="participantType" name="participantType" aria-label="Default select example">
+								
+							</select>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col col-12">
+							<label for="applicationPeriod" class="form-label">BAŞVURU DÖNEMİ</label>
+							<select class="form-select" id="applicationPeriod" name="applicationPeriod" aria-label="Default select example">
+							
+							</select>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col col-12">
+							<label for="applicationDate" class="col-form-label">BAŞVURU TARİHİ</label>
+							<input class="form-control" type="date" value="2021-06-18" id="applicationDate" name="applicationDate" />
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col col-12">
+							<label for="applicationState" class="form-label">BAŞVURU DURUMU</label>
+							<select class="form-select" id="applicationState" name="applicationState" aria-label="Default select example">
+								
+							</select>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-12">
+							<label for="stateDate" class="col-form-label">DURUM TARİHİ</label>
+							<input class="form-control" type="date" value="2021-06-18" id="stateDate" name="stateDate" />
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col col-12">
+							<label for="grantAmount" class="form-label">HİBE TUTARI</label>
+							<input type="text"
+								   class="form-control"
+								   id="grantAmount"
+								   name="grantAmount"
+								   aria-describedby="defaultFormControlHelp" />
+						</div>
+					</div>
+					<div class="row mb-3 justify-content-center">
+						<div class="col col-2">
+							<button type="button" class="btn btn-primary" onclick="sendApplicationForm()">Send</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Diğer scriptler buradaysa onların altına yazabilirsin -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@* <script src="~/js/application-functions.js"></script> *@
+</html>

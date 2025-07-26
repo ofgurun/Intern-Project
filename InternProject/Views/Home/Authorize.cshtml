@@ -1,0 +1,87 @@
+﻿@model List<InternProject.Models.User>
+
+@{
+    ViewData["Title"] = "Kullanıcı Yetkilendirme";
+    var currentUsername = Context.Session.GetString("Username");
+}
+
+<div class="card mb-4">
+    <h5 class="card-header">Kullanıcı Yetkilendirme</h5>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Kullanıcı Adı</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.Username</td>
+                            <td>
+                                @{
+                                    var disabled = user.Username == currentUsername ? "disabled" : "";
+                                }
+
+                                <div class="mb-3">
+                                    <label class="form-label">Rol Seç</label>
+                                    <select class="form-select"
+                                            onchange="updateRole(@user.Id, this.value)" @disabled>
+                                        @if (user.Role == "Yönetici")
+                                        {
+                                            <option value="Yönetici" selected>Yönetici</option>
+                                            <option value="Çalışan">Çalışan</option>
+                                            <option value="Normal Kullanıcı">Normal Kullanıcı</option>
+                                        }
+                                        else if (user.Role == "Çalışan")
+                                        {
+                                            <option value="Yönetici">Yönetici</option>
+                                            <option value="Çalışan" selected>Çalışan</option>
+                                            <option value="Normal Kullanıcı">Normal Kullanıcı</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="Yönetici">Yönetici</option>
+                                            <option value="Çalışan">Çalışan</option>
+                                            <option value="Normal Kullanıcı" selected>Normal Kullanıcı</option>
+                                        }
+                                    </select>
+
+                                    @if (user.Username == currentUsername)
+                                    {
+                                        <span class="text-muted ms-2">(Kendi yetkiniz)</span>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function updateRole(userId, role) {
+            $.ajax({
+                url: '@Url.Action("UpdateAuthorization", "Home")',
+                type: 'POST',
+                data: { userId: userId, role: role },
+                success: function (response) {
+                    if (response.success) {
+                        alert("Rol güncellendi.");
+                    } else {
+                        alert("Rol güncellenirken hata oluştu: " + (response.message || ""));
+                    }
+                },
+                error: function () {
+                    alert("Sunucu hatası.");
+                }
+            });
+        }
+    </script>
+}

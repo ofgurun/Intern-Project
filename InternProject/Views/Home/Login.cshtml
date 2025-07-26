@@ -1,0 +1,104 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en" class="light-style customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="/assets/" data-template="vertical-menu-template-free">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap</title>
+
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/theme-default.css" />
+    <link rel="stylesheet" href="/assets/css/demo.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/pages/page-auth.css" />
+    <script src="/assets/vendor/js/helpers.js"></script>
+    <script src="/assets/js/config.js"></script>
+</head>
+
+<body>
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="app-brand justify-content-center">
+                            <a href="/" class="app-brand-link gap-2">
+                               
+                                <span class="app-brand-text demo text-body fw-bolder">Staj Projem</span>
+                            </a>
+                        </div>
+
+                        <h4 class="mb-2 text-center">Hoşgeldiniz 👋</h4>
+                        <p class="mb-4 text-center">Lütfen hesabınıza giriş yapınız</p>
+
+                        <form class="mb-3">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Kullanıcı Adı</label>
+                                <input type="text" class="form-control" id="username" placeholder="Kullanıcı Adınız" autofocus />
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <label class="form-label" for="password">Şifre</label>
+                                </div>
+                                <input type="password" id="password" class="form-control" placeholder="********" />
+                            </div>
+
+                            @*    <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember-me" />
+                                    <label class="form-check-label" for="remember-me"> Remember Me </label>
+                                </div>
+                            </div> *@
+
+                            <div class="mb-3">
+                                <button type="button" onclick="login()" class="btn btn-primary d-grid w-100">Giriş Yap</button>
+                            </div>
+
+                            <div class="mb-3">
+                                <a href="/Home/Register" class="btn btn-outline-secondary d-grid w-100">Hesap Oluştur</a>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="/assets/vendor/libs/popper/popper.js"></script>
+    <script src="/assets/vendor/js/bootstrap.js"></script>
+    <script src="/assets/vendor/js/menu.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+
+                function login() {
+            const username = $('#username').val();
+            const password = $('#password').val();
+
+            if (!username || !password) {
+                alert("Lütfen kullanıcı adı ve şifre giriniz.");
+                return;
+            }
+
+            $.post('/Home/Login', { username, password }, function (res) {
+                if (res.success) {
+                    window.location.href = res.redirect;
+                } else {
+                    alert(res.message);
+                }
+            });
+        }
+
+
+    </script>
+
+</body>
+</html>
