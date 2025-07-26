@@ -1,4 +1,4 @@
-# My Internship Project
+# Internship Project
 
 Bu proje, ASP.NET MVC mimarisi ile geliştirilen bir kullanıcı yönetim sistemi ve harita modülünü bir araya getiren tam işlevli bir web uygulamasıdır. Uygulama hem veri tabanı işlemleri (CRUD) hem de etkileşimli harita işlemlerini desteklemektedir.
 
